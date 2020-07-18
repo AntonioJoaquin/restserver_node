@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // aniadimos las rutas del usuario
 app.use(require('./routes/usuario.js'));
 
-mongoose.connect('mongodb://localhost:27017/Cafe', {
+mongoose.connect(process.env.URLDB, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
