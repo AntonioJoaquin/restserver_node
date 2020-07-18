@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(require('./routes/usuario.js'));
 
 mongoose.connect('mongodb://localhost:27017/Cafe', {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(res => {
