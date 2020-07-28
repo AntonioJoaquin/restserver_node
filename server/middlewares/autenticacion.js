@@ -17,6 +17,7 @@ let verificaToken = (req, res, next) => {
             });
         }
 
+        req.usuarioId = decoded.usuarioId;
         req.usuario = decoded.usuario;
         next();
     });

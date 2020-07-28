@@ -7,7 +7,6 @@ const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const express = require('express');
-const { json } = require('body-parser');
 const app = express();
 
 
@@ -41,6 +40,7 @@ app.post('/login', (req, res) => {
         }
 
         let token = jwt.sign({
+            usuarioId: usuarioBD._id,
             usuario: usuarioBD
         }, process.env.SEED_AUTENTICACION, { expiresIn: process.env.CADUCIDAD_TOKEN });
 
@@ -68,7 +68,7 @@ async function verify(token) {
         email: payload.email,
         img: payload.picture,
         google: true
-    }
+    };
 }
 
 
@@ -101,6 +101,7 @@ app.post('/google', async(req, res) => {
                 });
             } else {
                 let token = jwt.sign({
+                    usuarioId: usuarioDB._id,
                     usuario: usuarioDB
                 }, process.env.SEED_AUTENTICACION, { expiresIn: process.env.CADUCIDAD_TOKEN });
 
